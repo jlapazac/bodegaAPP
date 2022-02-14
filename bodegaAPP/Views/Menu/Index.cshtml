@@ -1,0 +1,82 @@
+﻿@model bodegaAPP.Dominio.Bodega
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron text-center">
+    <h1> @Html.DisplayFor(model => model.nombre) </h1>
+    <p class="lead">@Html.DisplayFor(model => model.idbodega)</p>
+</div>
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <strong>Datos</strong>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-5">
+                    <dl>
+                        <dt>
+                            @ViewBag.Titulo3
+                        </dt>
+                        <dd>
+                            <span class="glyphicon glyphicon-map-marker"></span>
+                            @Html.DisplayFor(model => model.direccion)
+                        </dd>
+                        <dt>
+                            @ViewBag.Titulo4
+                        </dt>
+                        <dd>
+                            <span class="glyphicon glyphicon-user"></span>
+                            @Html.DisplayFor(model => model.contacto)
+                        </dd>
+                        <dt>
+                            @ViewBag.Titulo5
+                        </dt>
+                        <dd>
+                            <span class="glyphicon glyphicon-phone"></span>
+                            @Html.DisplayFor(model => model.telefono)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="col-lg-5">
+                    <style>
+                        #map {
+                            height: 400px;
+                            width: 600px;
+                        }
+                    </style>
+
+                    <div class="row">
+                        <div id="map"></div>
+                        <script>
+                const myLatLng = { lat: @Html.DisplayFor(model => model.latitud), lng: @Html.DisplayFor(model => model.longitud) };
+                function initMap() {
+                    const map = new google.maps.Map(document.getElementById("map"), {
+                    zoom: 20,
+                    center: myLatLng,
+                    });
+
+                    new google.maps.Marker({
+                        position: myLatLng,
+                        map,
+                        title: "",
+                    });
+                }
+                        </script>
+                        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAklTEBaGL6_JdZ3lTVqjsxDdhbh81J9OA&callback=initMap&v=weekly"
+                                async></script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="btn-group">
+                <p class="btn btn-primary" role="button">@Html.ActionLink("Editar", "Edit", new { id1 = Model.idbodega }, new { Style = "color:White;font-weight:bold" })</p>
+                <p class="btn btn-primary" role="button">@Html.ActionLink("Ver Pedidos", "Pedido", new { id = Model.idbodega }, new { Style = "color:White;font-weight:bold" })</p>
+                <p class="btn btn-primary" role="button">@Html.ActionLink("Ver Productos", "Producto", new { id = Model.idbodega }, new { Style = "color:White;font-weight:bold" })</p>
+            </div>
+        </div>
+    </div>
+</div>
