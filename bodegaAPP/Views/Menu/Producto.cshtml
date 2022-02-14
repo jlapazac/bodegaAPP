@@ -1,0 +1,29 @@
+﻿@model IEnumerable<bodegaAPP.Dominio.Producto>
+@{
+    ViewBag.Title = "Producto";
+}
+
+<h2>Producto</h2>
+<table class="table">
+    <tr>
+        <th>ViewBag.Titulo1</th>
+        <th>ViewBag.Titulo2</th>
+        <th>ViewBag.Titulo3</th>
+        <th>ViewBag.Titulo4</th>
+        <th>ViewBag.Titulo5</th>
+        <th>ViewBag.Titulo6</th>
+        <th>Acciones</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.idproducto)</td>
+            <td>@Html.DisplayFor(modelItem => item.nombre)</td>
+            <td>@Html.DisplayFor(modelItem => item.imagen)</td>
+            <td>@Html.DisplayFor(modelItem => item.precio)</td>
+            <td>@Html.DisplayFor(modelItem => item.activo)</td>
+            <td>@Html.DisplayFor(modelItem => item.descategoria)</td>
+            <td></td>
+        </tr>
+    }
+</table>

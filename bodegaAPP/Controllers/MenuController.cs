@@ -94,27 +94,25 @@ namespace bodegaAPP.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://bodegawsrest20220213174454.azurewebsites.net/BodegaService.svc/bodegauser/" + id);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://bodegawsrest20220213174454.azurewebsites.net/BodegaService.svc/bodegaproductos/" + id);
             request.Method = "GET";
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             StreamReader reader = new StreamReader(response.GetResponseStream());
             string tramajson = reader.ReadToEnd();
             JavaScriptSerializer js = new JavaScriptSerializer();
-            Bodega bodegaObtenida = js.Deserialize<Bodega>(tramajson);
-            if (bodegaObtenida == null)
+            List<Producto> productoObtenida = js.Deserialize<List<Producto>>(tramajson);
+            if (productoObtenida == null)
             {
                 return HttpNotFound();
             }
             ViewData["Message"] = "Bodega";
             ViewBag.Titulo1 = "Codigo";
             ViewBag.Titulo2 = "Nombre";
-            ViewBag.Titulo3 = "Direccion";
-            ViewBag.Titulo4 = "Contacto";
-            ViewBag.Titulo5 = "Telefono";
-            ViewBag.Titulo6 = "Latitud";
-            ViewBag.Titulo7 = "Longitud";
-            ViewBag.Titulo8 = "Activo";
-            return View(bodegaObtenida);
+            ViewBag.Titulo3 = "Imagen";
+            ViewBag.Titulo4 = "Precio";
+            ViewBag.Titulo5 = "Activo";
+            ViewBag.Titulo6 = "Categoria";
+            return View(productoObtenida);
         }
     }
 }
