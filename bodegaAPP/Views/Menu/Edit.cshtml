@@ -3,99 +3,144 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>@ViewData["Message"]</h2>
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="container">
+    <h2>@ViewData["Message"]</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h4>Modifica Bodega</h4>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.id)
+    <div class="form-horizontal">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <strong>Modifica Bodega</strong>
+            </div>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id)
+            @Html.HiddenFor(model => model.idbodega)
+            @Html.HiddenFor(model => model.iduser)
+            @Html.HiddenFor(model => model.latitud)
+            @Html.HiddenFor(model => model.longitud)
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.idbodega, "Codigo", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.idbodega, new { htmlAttribute = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.idbodega, "", new { @class = "text-danger" })
-        </div>
-    </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder=@Html.DisplayFor(model => model.idbodega) disabled>
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.nombre, "nombre", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.nombre, new { htmlAttribute = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-registration-mark"></i></span>
+                                    <input class="form-control" id="nombre" name="nombre" type="text" value="@Html.DisplayFor(model => model.nombre)">
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.direccion, "direccion", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.direccion, new { htmlAttribute = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.direccion, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                    <input class="form-control" id="direccion" name="direccion" type="text" value="@Html.DisplayFor(model => model.direccion)">
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.contacto, "contacto", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.contacto, new { htmlAttribute = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.contacto, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input class="form-control" id="contacto" name="contacto" type="text" value="@Html.DisplayFor(model => model.contacto)">
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.telefono, "telefono", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.telefono, new { htmlAttribute = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.telefono, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                    <input class="form-control" id="telefono" name="telefono" type="text" value="@Html.DisplayFor(model => model.telefono)">
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.latitud, "latitud", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.latitud, new { htmlAttribute = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.latitud, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="checkbox">
+                                    <label>@Html.CheckBoxFor(model => model.activo) Estado</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <style>
+                            #map {
+                                height: 400px;
+                                width: 600px;
+                            }
+                        </style>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.longitud, "longitud", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.longitud, new { htmlAttribute = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.longitud, "", new { @class = "text-danger" })
-        </div>
-    </div>
+                        <div class="row">
+                            <div id="map"></div>
+                            <script>
+                                let marker;
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.activo, "Estado", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.activo, new { htmlAttribute = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.activo, "", new { @class = "text-danger" })
+                                function initMap() {
+                                    const map = new google.maps.Map(document.getElementById("map"), {
+                                        zoom: 18,
+                                        center: { lat: @Html.DisplayFor(model => model.latitud), lng: @Html.DisplayFor(model => model.longitud) },
+                                    });
+
+                                    marker = new google.maps.Marker({
+                                        map,
+                                        draggable: true,
+                                        animation: google.maps.Animation.DROP,
+                                        position: { lat: @Html.DisplayFor(model => model.latitud), lng: @Html.DisplayFor(model => model.longitud) },
+                                    });
+                                    marker.addListener("click", toggleBounce)
+
+                                    google.maps.event.addListener(marker, 'dragend', function () {
+                                        var Lats = marker.getPosition().lat();
+                                        var Longs = marker.getPosition().lng();
+                                        $('#latitud').val(Lats);
+                                        $('#longitud').val(Longs);
+                                    });
+                                }
+
+                                function toggleBounce() {
+                                    if (marker.getAnimation() !== null) {
+                                        marker.setAnimation(null);
+                                    } else {
+                                        marker.setAnimation(google.maps.Animation.BOUNCE);
+                                    }
+                                }
+                            </script>
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAklTEBaGL6_JdZ3lTVqjsxDdhbh81J9OA&callback=initMap&v=weekly"
+                                    async></script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <div class="btn-group">
+                            <input class="btn btn-primary" type="submit" value="Grabar" />
+                            @Html.ActionLink("Regresar", "Index", new { id = Model.idbodega }, new { @class = "btn btn-primary" })
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.iduser, "User", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.iduser, new { htmlAttribute = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.iduser, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Grabar" class="btn btn-default" />
-        </div>
-    </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
 </div>
-}
-
-<div>
-    @Html.ActionLink("Retorno a la lista", "Index")
-</div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
