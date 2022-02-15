@@ -1,0 +1,65 @@
+﻿@model IEnumerable<bodegaAPP.ProductosService.Producto>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewData["Message"]</h2>
+<p>
+    @Html.ActionLink("Nuevo Producto", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @ViewBag.Titulo1
+        </th>
+        <th>
+            @ViewBag.Titulo2
+        </th>
+        <th>
+            @ViewBag.Titulo3
+        </th>
+        <th>
+            @ViewBag.Titulo4
+        </th>
+        <th>
+            @ViewBag.Titulo5
+        </th>
+        <th>
+            @ViewBag.Titulo6
+        </th>
+        <th>
+            @ViewBag.Titulo7
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idproducto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.imagen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idcategoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idbodega)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.activo)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.idproducto.Trim() }) |
+                @Html.ActionLink("Detalle", "Details", new { id = item.idproducto.Trim() }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.idproducto.Trim() })
+            </td>
+        </tr>
+    }
+</table>

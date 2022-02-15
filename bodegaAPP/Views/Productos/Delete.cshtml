@@ -1,0 +1,67 @@
+﻿@model bodegaAPP.ProductosService.Producto
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>@ViewData["Message"]</h2>
+<h3>¿Está seguro de ELIMINAR este producto?</h3>
+<div>
+    <h4></h4>
+    <hr/>
+    <dl class="dl-horizontal">
+        <dt>
+            @ViewBag.Titulo1
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.idproducto)
+        </dd>
+        <dt>
+            @ViewBag.Titulo2
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+        <dt>
+            @ViewBag.Titulo3
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.imagen)
+        </dd>
+        <dt>
+            @ViewBag.Titulo4
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.precio)
+        </dd>
+        <dt>
+            @ViewBag.Titulo5
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.idcategoria)
+        </dd>
+        <dt>
+            @ViewBag.Titulo6
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.idbodega)
+        </dd>
+        <dt>
+            @ViewBag.Titulo7
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+        <div>
+            <input type="submit" value="Eliminar" class="btn btn-default" />
+            <button type="button"
+                    onclick="@("window.location.href='" + @Url.Action("Index", "Productos", new {id = Model.idbodega}) +"'");" class="btn btn-danger">
+                Volver
+            </button>
+        </div>
+            }
+</div>
