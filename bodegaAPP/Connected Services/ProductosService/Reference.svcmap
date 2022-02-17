@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c999e3b1-1590-4474-890c-a2c79f9a932e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://productosbodegawssoap20220214181714.azurewebsites.net/ProductoService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ProductoService.xsd" MetadataType="Schema" ID="ed7987d5-7199-43dc-b005-e4b7a9d7b1de" SourceId="1" SourceUrl="https://productosbodegawssoap20220214181714.azurewebsites.net/ProductoService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ProductoService.disco" MetadataType="Disco" ID="fb06831f-8e6a-4d7e-a4db-d9d00271d82b" SourceId="1" SourceUrl="https://productosbodegawssoap20220214181714.azurewebsites.net/ProductoService.svc?disco" />
+    <MetadataFile FileName="ProductoService1.xsd" MetadataType="Schema" ID="9a38c76c-d2d4-4336-96fe-c09132ef61dc" SourceId="1" SourceUrl="https://productosbodegawssoap20220214181714.azurewebsites.net/ProductoService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ProductoService2.xsd" MetadataType="Schema" ID="638cce44-835c-460b-a28b-beaaceac98bb" SourceId="1" SourceUrl="https://productosbodegawssoap20220214181714.azurewebsites.net/ProductoService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ProductoService3.xsd" MetadataType="Schema" ID="00d60f1c-3819-4391-a0ad-331b4a5eda21" SourceId="1" SourceUrl="https://productosbodegawssoap20220214181714.azurewebsites.net/ProductoService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ProductoService.wsdl" MetadataType="Wsdl" ID="0b9d618d-4398-45bd-b537-f1aa94ad3585" SourceId="1" SourceUrl="https://productosbodegawssoap20220214181714.azurewebsites.net/ProductoService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
