@@ -28,7 +28,7 @@ namespace bodegaAPP.Controllers
             Bodega bodegaObtenida = js.Deserialize<Bodega>(tramajson);
             if(bodegaObtenida == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Create");
             }
             ViewData["Message"] = "Bodega";
             ViewBag.Titulo1 = "Codigo";
@@ -88,31 +88,32 @@ namespace bodegaAPP.Controllers
             return View(bodega);
         }
 
-        public ActionResult Producto(string id)
+        public ActionResult Create()
         {
-            if (id == null)
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "idbodega, nombre, direccion, contacto, telefono, latitud, longitud, iduser")] bodegaAPP.Dominio.Bodega bodega)
+        {
+            if (ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                JavaScriptSerializer js = new JavaScriptSerializer();
+                string postdata = js.Serialize(bodega);
+                byte[] data = Encoding.UTF8.GetBytes(postdata);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://bodegawsrest20220213174454.azurewebsites.net/BodegaService.svc/bodegas");
+                request.Method = "POST";
+                request.ContentLength = data.Length;
+                request.ContentType = "application/json";
+                var requestStream = request.GetRequestStream();
+                requestStream.Write(data, 0, data.Length);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                StreamReader reader = new StreamReader(response.GetResponseStream());
+
+                return RedirectToAction("Index");
             }
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://bodegawsrest20220213174454.azurewebsites.net/BodegaService.svc/bodegaproductos/" + id);
-            request.Method = "GET";
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            StreamReader reader = new StreamReader(response.GetResponseStream());
-            string tramajson = reader.ReadToEnd();
-            JavaScriptSerializer js = new JavaScriptSerializer();
-            List<Producto> productoObtenida = js.Deserialize<List<Producto>>(tramajson);
-            if (productoObtenida == null)
-            {
-                return HttpNotFound();
-            }
-            ViewData["Message"] = "Bodega";
-            ViewBag.Titulo1 = "Codigo";
-            ViewBag.Titulo2 = "Nombre";
-            ViewBag.Titulo3 = "Imagen";
-            ViewBag.Titulo4 = "Precio";
-            ViewBag.Titulo5 = "Activo";
-            ViewBag.Titulo6 = "Categoria";
-            return View(productoObtenida);
+            return View(bodega);
         }
     }
 }
