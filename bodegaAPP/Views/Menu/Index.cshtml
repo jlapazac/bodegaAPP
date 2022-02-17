@@ -1,5 +1,4 @@
 ﻿@model bodegaAPP.Dominio.Bodega
-@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Home Page";
 }
@@ -16,29 +15,39 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-5">
-                    <dl>
-                        <dt>
-                            @ViewBag.Titulo3
-                        </dt>
-                        <dd>
-                            <span class="glyphicon glyphicon-map-marker"></span>
-                            @Html.DisplayFor(model => model.direccion)
-                        </dd>
-                        <dt>
-                            @ViewBag.Titulo4
-                        </dt>
-                        <dd>
-                            <span class="glyphicon glyphicon-user"></span>
-                            @Html.DisplayFor(model => model.contacto)
-                        </dd>
-                        <dt>
-                            @ViewBag.Titulo5
-                        </dt>
-                        <dd>
-                            <span class="glyphicon glyphicon-phone"></span>
-                            @Html.DisplayFor(model => model.telefono)
-                        </dd>
-                    </dl>
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                    <input class="form-control" id="direccion" name="direccion" type="text" value="@Html.DisplayFor(model => model.direccion)" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input class="form-control" id="contacto" name="contacto" type="text" value="@Html.DisplayFor(model => model.contacto)" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                    <input class="form-control" id="telefono" name="telefono" type="text" value="@Html.DisplayFor(model => model.telefono)" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="checkbox">
+                                    <label>@Html.CheckBoxFor(model => model.activo, new { @disabled = "disabled" }) Estado</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-5">
                     <style>
@@ -54,7 +63,7 @@
                 const myLatLng = { lat: @Html.DisplayFor(model => model.latitud), lng: @Html.DisplayFor(model => model.longitud) };
                 function initMap() {
                     const map = new google.maps.Map(document.getElementById("map"), {
-                    zoom: 20,
+                    zoom: 18,
                     center: myLatLng,
                     });
 
@@ -73,9 +82,9 @@
         </div>
         <div class="panel-footer">
             <div class="btn-group">
-                <p class="btn btn-primary" role="button">@Html.ActionLink("Editar", "Edit", new { id1 = Model.idbodega }, new { Style = "color:White;font-weight:bold" })</p>
-                <p class="btn btn-primary" role="button">@Html.ActionLink("Ver Pedidos", "Pedido", new { id = Model.idbodega }, new { Style = "color:White;font-weight:bold" })</p>
-                <p class="btn btn-primary" role="button">@Html.ActionLink("Ver Productos", "Producto", "Productos", new { id = Model.idbodega }, new { Style = "color:White;font-weight:bold" })</p>
+                @Html.ActionLink("Editar", "Edit", new { id1 = Model.idbodega }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Ver Pedidos", "Pedido", new { id = Model.idbodega }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Ver Productos", "Producto", "Productos", new { id = Model.idbodega }, new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>

@@ -1,0 +1,159 @@
+﻿@using Microsoft.AspNet.Identity
+@model bodegaAPP.Dominio.Bodega
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container">
+    <h2>@ViewData["Message"]</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <strong>Modifica Bodega</strong>
+                </div>
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
+                                        @Html.TextBox("iduser", User.Identity.GetUserId(), new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
+                                        <input class="form-control" id="idbodega" name="idbodega" type="text" placeholder="Codigo">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-registration-mark"></i></span>
+                                        <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Nombre">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                        <input class="form-control" id="direccion" name="direccion" type="text" placeholder="Direccion">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input class="form-control" id="contacto" name="contacto" type="text" placeholder="Contacto">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                        <input class="form-control" id="telefono" name="telefono" type="text" placeholder="Telefono">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                        <input class="form-control" id="latitud" name="latitud" type="text" placeholder="Telefono">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                        <input class="form-control" id="longitud" name="longitud" type="text" placeholder="Telefono">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <style>
+                                #map {
+                                    height: 400px;
+                                    width: 600px;
+                                }
+                            </style>
+
+                            <div class="row">
+                                <div id="map"></div>
+                                <script>
+                                    let marker;
+
+                                    function initMap() {
+                                        const map = new google.maps.Map(document.getElementById("map"), {
+                                            zoom: 18,
+                                            center: { lat: -12.051741, lng: -77.034538 },
+                                        });
+
+                                        marker = new google.maps.Marker({
+                                            map,
+                                            draggable: true,
+                                            animation: google.maps.Animation.DROP,
+                                            position: { lat: -12.051741, lng: -77.034538 },
+                                        });
+                                        marker.addListener("click", toggleBounce)
+
+                                        google.maps.event.addListener(marker, 'dragend', function () {
+                                            var Lats = marker.getPosition().lat();
+                                            var Longs = marker.getPosition().lng();
+                                            $('#latitud').val(Lats);
+                                            $('#longitud').val(Longs);
+                                        });
+                                    }
+
+                                    function toggleBounce() {
+                                        if (marker.getAnimation() !== null) {
+                                            marker.setAnimation(null);
+                                        } else {
+                                            marker.setAnimation(google.maps.Animation.BOUNCE);
+                                        }
+                                    }
+                                </script>
+                                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAklTEBaGL6_JdZ3lTVqjsxDdhbh81J9OA&callback=initMap&v=weekly"
+                                        async></script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <div class="btn-group">
+                                <input class="btn btn-primary" type="submit" value="Grabar" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+</div>
