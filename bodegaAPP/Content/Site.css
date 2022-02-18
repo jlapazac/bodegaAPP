@@ -56,3 +56,10 @@ textarea {
     text-align: center;
     position: absolute;
 }
+
+.center-block {
+    display: table; /* Instead of display:block */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 40px 0px 40px;
+}

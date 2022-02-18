@@ -3,57 +3,65 @@
     ViewBag.Title = "Details";
 }
 
-<h2>@ViewData["Message"]</h2>
-
-<div>
-    <h4>Producto</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @ViewBag.Titulo1
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.idproducto)
-        </dd>
-        <dt>
-            @ViewBag.Titulo2
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
-        <dt>
-            @ViewBag.Titulo3
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.imagen)
-        </dd>
-        <dt>
-            @ViewBag.Titulo4
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.precio)
-        </dd>
-        <dt>
-            @ViewBag.Titulo5
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.idcategoria)
-        </dd>
-        <dt>
-            @ViewBag.Titulo6
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.idbodega)
-        </dd>
-        <dt>
-            @ViewBag.Titulo7
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.activo)
-        </dd>
-    </dl>
+<div class="container">
+    <h2> </h2>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <strong>@ViewData["Message"]</strong>
+        </div>
+        <div class="panel-body">
+            <div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @ViewBag.Titulo1
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.idproducto)
+                    </dd>
+                    <dt>
+                        @ViewBag.Titulo2
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.nombre)
+                    </dd>
+                    <dt>
+                        @ViewBag.Titulo3
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.imagen)
+                    </dd>
+                    <dt>
+                        @ViewBag.Titulo4
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.precio)
+                    </dd>
+                    <dt>
+                        @ViewBag.Titulo5
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.idcategoria)
+                    </dd>
+                    <dt>
+                        @ViewBag.Titulo6
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.idbodega)
+                    </dd>
+                    <dt>
+                        @ViewBag.Titulo7
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.activo)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <div class="btn-group">
+                @Html.ActionLink("Editar", "Edit", new { id = Model.idproducto }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Regresar", "Index", "Productos", new { id = Model.idbodega }, new { @class = "btn btn-primary" })
+            </div>
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Editar", "Edit", new { id = Model.idproducto }) |
-    @Html.ActionLink("Retorno a la lista", "Index", "Productos", new { id = Model.idbodega }, new { Style = "" })
-</p>
